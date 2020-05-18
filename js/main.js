@@ -1,0 +1,76 @@
+// Variables
+
+let nav = document.getElementById("nav");
+let menu = document.getElementById("enlaces");
+let abrir = document.getElementById("open");
+let botones = document.getElementsByClassName("btn-header");
+let cerrado = true;
+
+/* window.pageYOffset: Recupera el número de píxeles por los cuales el contenido del 
+documento se desplaza hacia arriba. */
+
+function menus() {
+  let Desplazamiento_Actual = window.pageYOffset;
+
+  /* Menor o igual a 300 mantengo la nav1.
+    Luego cuando supera remuevo la nav1 y pongo la nav2*/
+  if (Desplazamiento_Actual <= 300) {
+    nav.classList.remove("nav2");
+    nav.className = "nav1";
+    nav.style.transition = "1s";
+    menu.style.top = "80px";
+    abrir.style.color = "#fff"; /* color del menu hamburguesa */
+  } else {
+    nav.classList.remove("nav1");
+    nav.className = "nav2";
+    nav.style.transition = "1s";
+    menu.style.top = "100px";
+    abrir.style.color = "#000";
+  }
+}
+
+function apertura() {
+  if (cerrado) {
+    menu.style.width = "100vw";
+    cerrado = false;
+  } else {
+    menu.style.width = "0%";
+    menu.style.overflow = "hidden";
+    cerrado = true;
+  }
+}
+
+window.addEventListener("load", function () {
+  $("#onload").fadeOut();
+  $("body").removeClass("hidden");
+  menus();
+});
+
+window.addEventListener("click", function (e) {
+  if (cerrado == false) {
+    let span = document.querySelector("span");
+
+    /* si hago click en otro lado me oculta el menu */
+    if (e.target !== span && e.target !== abrir) {
+      menu.style.width = "0%";
+      menu.style.overflow = "hidden";
+      cerrado = true;
+    }
+  }
+});
+
+window.addEventListener("scroll", function () {
+  menus();
+});
+
+window.addEventListener("resize", function () {
+  if (screen.width >= 700) {
+    cerrado = true;
+    menu.style.removeProperty("overflow");
+    menu.style.removeProperty("width");
+  }
+});
+
+abrir.addEventListener("click", function () {
+  apertura();
+});
