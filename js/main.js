@@ -6,14 +6,9 @@ let abrir = document.getElementById("open");
 let botones = document.getElementsByClassName("btn-header");
 let cerrado = true;
 
-/* window.pageYOffset: Recupera el número de píxeles por los cuales el contenido del 
-documento se desplaza hacia arriba. */
-
 function menus() {
   let Desplazamiento_Actual = window.pageYOffset;
 
-  /* Menor o igual a 300 mantengo la nav1.
-    Luego cuando supera remuevo la nav1 y pongo la nav2*/
   if (Desplazamiento_Actual <= 300) {
     nav.classList.remove("nav2");
     nav.className = "nav1";
