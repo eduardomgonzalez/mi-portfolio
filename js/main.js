@@ -6,6 +6,9 @@ let abrir = document.getElementById("open");
 let botones = document.getElementsByClassName("btn-header");
 let cerrado = true;
 
+// AOS
+AOS.init();
+
 function menus() {
   let Desplazamiento_Actual = window.pageYOffset;
 
